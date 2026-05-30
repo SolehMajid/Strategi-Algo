@@ -1,0 +1,35 @@
+<?php 
+    require_once "fungsi.php";
+
+    $msg = "";
+    $display = "";
+    if(!empty($_POST['submit'])) {
+        validasiPembuat(htmlspecialchars($_POST['username']), htmlspecialchars($_POST['password']), $msg, $display);
+    }
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Strategi Algoritma</title>
+</head>
+<body>
+    <?php echo $msg; ?>
+    <form action="" method="post">
+        <p class="tengah">Masukkan username</p>
+        <div class="tengah">
+            <input type="text" name="username" value="">
+        </div>
+        <p class="tengah">Masukkan password</p>
+        <div class="tengah">
+            <input type="password" name="password" value="">
+        </div>
+        <div class="tengah">
+            <a class="kembali" href="index.html">Kembali</a>
+            <input type="submit" value="submit" name="submit">
+        </div>
+    </form>
+</body>
+</html>
