@@ -1,13 +1,11 @@
-<?php 
-    $user = 'root';
-    $pass = 'root';
-    $db = 'strategi_algo';
-    $host = 'localhost';
+<?php
+$user = 'root';
+$pass = '';
+$db = 'strategi_algo';
+$host = 'localhost';
 
-    $conn = new PDO(
-        "mysql:host=$host;dbname=$db",
-        $user,
-        $pass
-    );
-
-?>
+$conn = new PDO(
+    "mysql:host=$host;dbname=$db",
+    $user,
+    $pass
+);

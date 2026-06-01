@@ -3,9 +3,10 @@
 
     $hasil = dashboardPembuat();
     
+    // Grouping by nama_jadwal, then by tanggal
     $karyawan = [];
     foreach($hasil as $h) {
-        $karyawan[$h['nama_jadwal']][] = [
+        $karyawan[$h['nama_jadwal']][$h['tanggal']][] = [
             'nama_karyawan' => $h['nama_karyawan'],
             'shift_kerja' => $h['shift_kerja']
         ];
@@ -30,15 +31,20 @@
     <div class="content">
         <br>
         <div>
-            <?php foreach ($karyawan as $k => $i): ?>
+            <?php foreach ($karyawan as $nama_jadwal => $tanggal_list): ?>
                 <div>
-                    <h5><?php echo $k ?></h5>
+                    <h5><?php echo htmlspecialchars($nama_jadwal) ?></h5>
                     <hr>
                     <div>
-                        <?php foreach($i as $isi): ?>
+                        <?php foreach($tanggal_list as $tgl => $shifts): ?>
                             <div>
-                                <span><?php echo $isi['nama_karyawan'] ?></span>
-                                <span><?php echo $isi['shift_kerja'] ?></span>
+                                <h5 class="tanggal-tgl"><?php echo date('d-m-Y', strtotime($tgl)) ?></h5>
+                                <?php foreach($shifts as $isi): ?>
+                                    <div class="list">
+                                        <span><?php echo htmlspecialchars($isi['nama_karyawan']) ?></span>
+                                        <span class="<?php echo $isi['shift_kerja'] == 'Libur' ? 'Libur' : '' ?>"><?php echo htmlspecialchars($isi['shift_kerja']) ?></span>
+                                    </div>
+                                <?php endforeach; ?>
                             </div>
                         <?php endforeach; ?>
                     </div>
